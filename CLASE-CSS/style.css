@@ -1,0 +1,245 @@
+/* p{
+    color:blue;
+    font-size:40px;
+} */
+
+/* se puede generar por etiqueta o por clase
+
+CLASE  */
+
+.parrafo{
+    color:red
+}
+
+/* ID */
+
+/* #parrafo{
+    color: green;
+    font: 24px;
+} */
+
+/* pseudo clases y pseudo elementos */
+
+.main-nav{
+    margin-top: 10px;
+    list-style: none; 
+   /* // dimension interna  es el espacio de separacion */   
+    padding-left: 0px;
+    background-color: blanchedalmond;
+    height: 20px;
+    font-size: small;
+    font: bold; 
+    justify-content: center;
+
+}
+
+.main-nav__item{
+    display: inline-block;
+}
+
+.main-nav__item a{
+    color:blue;
+    padding: 5px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.main-nav__item a:hover{ 
+    /* ---- pseudo clase define el estado especial de un elemento*/ 
+
+    background-color: gray;
+
+}
+
+.main-nav__item a:active{
+ /* ---- pseudo clase define el estado especial de un elemento*/ 
+
+    color:black;
+}
+
+.main-nav__item a::after{
+    /* --- pseudo elementos define el estilo de una parte especifica de un elemento*/
+    content: "|";
+}
+
+/* // ANATOMIA DE UNA REGLA EN CSS */
+
+/* ESTO ES UNA REGLA 
+
+P{
+^
+selector    --- que elemento modificar
+    color:red      -------------------- declaración de estilos
+       ^    ^                               
+propiedad valor de la propiedad ---- propiedad a cambiar y valor a aplicar
+} */
+
+/* MODELO DE CAJA */
+
+/* Todos los elementos que renderizamos son cajas, cada caja tiene ancho (width y alto hight y por lo tanto podemos trabajar con margenes
+
+top: margen superior
+left: margen izquierda
+right : margen derecho
+botton: margen inferior
+
+para estos espacios se usan comandos como padding
+
+trae un borden en automatico definodo con transparendte, pero podemos modificarlo por color y grosor */
+
+*{
+    /* // selector universal* debe ir siempre al inicio del archivo de stilos para evitar los escrol horizontales */
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    /* // con esto quito el scrol horizontal y me queda  la info del tamaño de la pantalla */
+}
+
+
+
+section{
+    width: 100%;
+    height: 500px;
+    border: 10px solid gray;
+    padding: 0px;
+}
+
+/* HERENCIA */
+
+/* son los atributos que viene por fecto de las etiquetas mayores a las menores, como los predeterminado para HTM que se aplican a todo lo que hat dentro del documetno hasta que son modmificados */
+
+html{
+    font-size: 75%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.herencia{
+    font-size: inherit;
+    /* // inherit es heredar y hereda del padre mas cercano */ 
+}
+
+/* como se controla el orden de la declaracion de CSS?
+
+1. importancia = si dos declaraciones tiene la misma importancia, la especificidad decide cual de aplica y si tiene la misma especificidad, el orden es quein decide cual aplicar.
+
+2. especificidad = claculadora de especifidad https://www.codecaptain.io/tools/css-specificity-calculator
+!importan = 1
+inline styles = 01 (son los de las etiquetas padre como html)
+#id = 001
+.class = 0001
+tag = 00001
+
+3. orden en las fuentes = SCC se sejecuta de arriba a bajo, siendo lo ultimo en ejecutarse o ultimo, por eso si llamo arriba y abajo la misma clase, es posible que se aplique el ultimo estilo y no el primero  */
+
+h2{
+    font-family: serif;
+    color: aqua;
+}
+
+#page-title{ 
+    /* // toma este color y letra por que es mas importante */
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: brown;
+}
+
+.title{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: fuchsia;
+}
+
+/* Combinadores: Adjacent Siblings (combinators)
+
+nos permiten combinar multiples selectores y crear una mayor especificidad: 
+
+hermano adyacente o cercano 
+
+div+p {
+
+} */
+
+h2 + p{
+    /* // aqui busca todas los parrafos cercanos a un h2 */
+    color: blue;
+}
+
+/* hermano general
+
+div ~ p {
+
+} */
+
+/* h2 ~ p{
+    // parafos que tengan como hermano general un h2
+
+} */
+
+/* hijo
+
+div > p{
+    // del padre div que sea una etiqueta parrafo
+
+} */
+
+/* decendiente
+
+div p {
+    // todas las etiquetas... que  esten adentro de una tiqueta.... 
+
+} */
+/* MEDIDA: 
+
+MEDIDAS RELATIVAS :--- si cambia dependiendo de la pantalla 
+ % - em 
+-rem (root em) 1 rem equivale 16 PX, siempre hace referencia a la etiqueta del HTML, Lo mejor es  abrir la etiqueta de html y asignarle a la letra un tamaño de fuente del 62.5%, y trabajar sobre 1 REM para que quivarla a 10 PX siempre para calcular sobre eso. 
+- max-width / max-height 
+- min-width / min-height --- le dice a la web que si su  contenido excede el minimo indicado se extienda hasta donde llegue el contenido, para evitar textos e imagenes fuera de la seccion delimitada
+- vw viewport width 
+- vh viewport height 
+
+MEDIDAD ABDOLUTAS: px - pixeles --- no cambia independiente de la pantalla que estemos viendo  */
+/* 
+POSICIONES:
+
+todas las posiciones en CSS viene por defecto como static, es decir que se quedan donde yo las ponga incluso si hago Scroll no se mueben
+
+absolute : pierde la posicion inicial  y todo se reordena
+relative
+fixed  */
+
+/* DISPLAY:
+
+block : el elemneto siempre va a ocupar el 100 de la plantalla definida y podemos agregar margen a los 4 lados 
+
+Inline: es lineal, no puede crecer arriba o abajo ni a los lados
+
+inlineblock : deja los elementos en el centro y permite poner margenes a los lados, arriba y abajo 
+
+Display flex:  ---  pone los contenedores en horizaontal por defecto colum -reverse voltea las columnas y row-reverse lo boltea cuando este en fila, flex-wrap hace que cuando la  pantalla se achique, el contenido se renderice y el justify-content alineas los contenidos (flex-start izquierda , flex-ends derecha y space-around con un espacio entre cada elemento)
+
+flexbox layout: --- cuando quiero ordenar los contenedores de formar vertical  */
+
+/* aling-items: permite alinear los items en un lugar definifo de la pantalla estrench---> hace que el contenedor se alinea segun su contenido
+
+con el comando order --> alineamos nuestro contenido segun el orden que queramos o necesitemos. 
+
+con flex-grow, los contenedores crecen de forma que llenaan el 100% del espacio dado. 
+
+VARIABLES:  */
+
+/* en css para declarar variables,  siempre se hacen  dentro de la siguiente expresión 
+:root{
+    /// variables aqui 
+/* } */
+
+/* para contruir la variable dentro del root debes comenzar con:
+
+-- nombre de la variable : lo que necesito guardar. 
+
+para aplicarla, uso la propiedad deseada y qaplicao con var(nombre de la variable)
+
+WEB FONTS: 
+
+GOOGLE FONTS : de ahi puedes sacar fuentes para los proyectos 
+
+tomo el que dice link y lo importo como link en el HEADER de mi proyecto, es una mejor practica  como <link href = " direccion " rel = " el archivo de estilos " */

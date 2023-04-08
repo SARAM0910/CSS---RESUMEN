@@ -1,0 +1,157 @@
+/* RESPONSIVE DESING:
+
+Es como hacer que nuestros proyectos se venaen todos los disposiivos. 
+
+- los media Queries y los breack point, como minimo se debe tener 3  y se declaran asi:  */
+
+/* Siempre deben ir al final de la hoja de estilos si se trabajn dentro de la misma hoja.  */
+
+@media (min-width= 480px){
+    /* .... codigo de loque debe pasar con el layout */
+}
+
+@media (min-width= 768px){
+    /* .... codigo de loque debe pasar con el layout */
+}
+
+@media (min-width= 1824px){
+    /* .... codigo de loque debe pasar con el layout */
+}
+
+/* esto hace que cuando se visualice en una laptop, en na tablet y en un cel la pantalla se alinea y el lay out cambie para un esponsive desing....
+
+la mayoria de las empreas y desarrolladores crean app que se ven bien en la Pc y liego deben adaptarla, es una mala practica, lo que se debe hacer es primero diseñar una pantalla chica y despues la pantallas grandes (mobile first / only) */
+
+/* la mejor manera de aplcarlo es en el head , el primer archivo a ligar de primero es el enfocado a Mobil, el segundo sera la pnalla siguiente y el tercero el de la pantalla mas grande, teniendo en cuanta que hay que agregar el min-width:px que necestamos que se cumplan para hacer este codigo adicional. 
+
+ejem: 
+
+<link href= "styless.css" rel = "stylessheet">------> enfoque ::mobile
+<link href= "tablet.css" rel = "stylessheet" media = "screen and (min-width:768px)">------> enfoque ::mobile */
+
+/* PATRONES DE MAQUETACIÓN RESPONSIVE DESING:  */
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+};
+
+html {
+    font-size: 62.5%;
+}
+
+.container{
+    display:flex;
+    flex-wrap: wrap;
+    /* // les permite reposicionarse a los conteedores internos para que cuando crezca el tamaño del viewport */
+}
+
+.C1, .C2, .C3, .C4, .C5{
+    width: 100PX;
+    min-width: 150px;
+    min-height: 150px;
+}
+
+.c1{
+    background-color: brown;
+}
+
+.c2{
+    background-color: bisque;
+}
+
+.c3{
+    background-color: aquamarine;
+}
+
+.C4{
+    background-color: antiquewhite;
+}
+
+.C5{
+    background-color: azure;
+}
+/* 
+mediaquery : este es el primer patron ---> mosly fluid es el primer patron  */
+
+@media (min-width= 600px){
+/* 
+    // Dentro de este espacio se comienzan a llamar las clases a las que se les deben hacer cambios para adaptarlos a las pantallas  */
+    .C2, .C3, .C4{
+        width : 50px;
+    }
+}
+
+@media (min-width= 800px){
+    .container{
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+  .C1{
+    width: 60%;
+  }
+  .C2{
+    width: 40%;
+  }
+  .C3, .C4{
+    width: 33%;
+  }
+  .C5{
+    width: 34%;
+  }
+}
+
+
+/* SEGUNDO PATRON  LAYOUT SHIFTER: consiste en mover los contenedores en bloques para  poder adaptarlos al tamaño de la pantalla correctamente */
+
+@media (min-width= 600px){
+    .container2{
+        width: 25%;
+    }
+
+    .container1_1{
+        width: 75%;
+    }
+
+    .C4_1{  
+        width: 100%;
+    }
+}
+
+@media (min-width= 800px){
+    .container2{
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+/* TERCER PATRON  COLUMN DROP: consiste enq ue los oconteedores se vyan a gregando en las lineas superirores depndiendo del contenido ajustandose a la pantalla visible.
+
+se agrega la propiedad order 
+
+RESPONSIBE IMAGEN: 
+
+para esto usamos la etiqueta picture asi: 
+
+<picture>
+ <sorce media= llama a la media que debe aplicar(min-width...) srcset= "imagen en el fromato necesario"/> ---> un sorce para cada media, la etiqueta que tenga el view port mas grande debe ir arriba 
+ <Image src="donde esta la imagen (la imagen)" alt ="descripcion"/>
+<picture/>
+
+ACCESIBILIDAD: 
+
+necesitas usar los HTML semantico, debido a que cuadno las personas tene alguna discapaciad los sofwares que usan para ayudarse no entiende bien el HTML cuando no es correctamente semantico. 
+
+los textos deben tener las medidas en relativo ejmp REM, debido que al usar el tamaño del texto solo en PX cuadno tengo problemas visules no puesdo aumentar el texto desde el navegador para leer por ser una medida absoluta. 
+
+LABELS, ALT Y TITLES:
+
+LABELS:  hace que mis preguntas en un formulario esten por contendores, par que cuando el usuario los vaya a llenar o tenga que pararse en cada input para llenar sino que al hacer alt  o al cambiar de pregunta.
+
+ALT: es u atributo para agregar una descripcion detras de las imagenes que sale cuando la imagen no se carga en la pagina y asi la gente sabe que habia alli
+
+TITLE: agrega los letreros que explican algo cuando nos paramos sobre los elementos sin hacer click 
